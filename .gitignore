@@ -11,6 +11,9 @@
 # production
 /build
 
+node_modules
+bower_components
+
 # misc
 .DS_Store
 .env.local
