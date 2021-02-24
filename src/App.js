@@ -5,6 +5,8 @@ import { Home } from "./components/Home";
 import { Books } from "./components/Books";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
+import { Login } from "./components/Login";
+import { Register } from "./components/Register";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/books" component={Books}></Route>
           <Route path="/about" component={About}></Route>
           <Route path="/contact" component={Contact}></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/register" component={Register}></Route>
         </Switch>
       </BrowserRouter>
     </div>

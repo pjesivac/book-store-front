@@ -21,7 +21,7 @@ export const Register = () => {
 
         //validating input
         let isValid = true;
-        
+
         isValid = (/^[a-zA-Z0-9_-]{8,20}$/).test(state.username);
         isValid = isValid && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(state.email));
         isValid = isValid && (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(state.password));
@@ -35,32 +35,26 @@ export const Register = () => {
     return (
         <div className="container">
             <div className="row">
-                <form className="col s12" onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="input-field col s12 m6">
-                            <input id="username" name="username" type="text" className="validate" onChange={handleChange} required />
-                            <label htmlFor="username">Username</label>
+                <form className="col-6" onSubmit={handleSubmit}>
+                    <div className="card">
+                        <div className="mb-3">
+                            <label htmlFor="username" className="form-label">Username</label>
+                            <input type="username" className="form-control" id="username" onChange={handleChange} required />
                         </div>
-                        <div className="input-field col s12 m6">
-                            <input id="email" name="email" type="email" className="validate" onChange={handleChange} required />
-                            <label htmlFor="email">Email</label>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email address</label>
+                            <input type="email" className="form-control" id="email" onChange={handleChange} required />
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12 m6">
-                            <input id="password" name="password" type="password" className="validate" onChange={handleChange} required />
-                            <label htmlFor="password">Password</label>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Password</label>
+                            <input type="password" className="form-control" id="password" onChange={handleChange} required />
                         </div>
-                        <div className="input-field col s12 m6">
-                            <input id="passwordConfirm" name="passwordConfirm" type="password" className="validate" onChange={handleChange} required />
-                            <label htmlFor="passwordConfirm">Confirm password</label>
+                        <div className="mb-3">
+                            <label htmlFor="passwordConfirm" className="form-label">Repeat password</label>
+                            <input type="passwordConfirm" className="form-control" id="passwordConfirm" onChange={handleChange} required />
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col s12">
-                            <button className="btn waves-effect waves-light left" type="submit" name="submitButton">Submit
-                            <i className="material-icons right">send</i>
-                            </button>
+                        <div>
+                            <button className="btn btn-success left" type="submit" name="submitButton">Submit</button>
                         </div>
                     </div>
                 </form>
