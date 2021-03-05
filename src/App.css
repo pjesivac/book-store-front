@@ -1,5 +1,6 @@
 .App {
   /* text-align: center; */
+  height: 100vh;
 }
 
 .App-logo {
@@ -26,6 +27,11 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.uk-slider-items img {
+  width: 100%;
+  height: 500px;
 }
 
 @keyframes App-logo-spin {

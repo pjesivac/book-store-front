@@ -20,12 +20,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: theme.spacing(3),
-    marginBottom: theme.spacing(3),
     [theme.breakpoints.up("md")]: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      marginBottom: theme.spacing(5),
     },
   },
   toolbarTitle: {
@@ -71,13 +69,13 @@ export const Navbar = () => {
             BOOK STORE
           </Typography>
           <Box className={classes.menuButtons}>
-            {["home", "books", "about", "contact"].map((item) => (
-              <Link to={item === "home" ? "/" : "/" + item}>
+            {["home", "books", "about", "contact", "login"].map((item) => (
+              <Link key={item} to={item === "home" ? "/" : "/" + item}>
                 <LinkMaterial
                   component="button"
                   variant="body2"
                   onClick={() => setActiveBtn(item)}
-                  color={activeBtn === item ? "textPrimary" : "textSecondary"}
+                  color={activeBtn === item ? "textPrimary" : "textPrimary"}
                   className={classes.item}
                   key={item}
                 >

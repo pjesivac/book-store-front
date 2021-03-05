@@ -1069,6 +1069,14 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-typescript" "^7.12.1"
 
+"@babel/runtime-corejs2@^7.13.9":
+  version "7.13.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.13.9.tgz#8cf629726a0ff96edfbfd91f5e93f975c2d86bc8"
+  integrity sha512-p6rtfkmJnAqFMVMgjtwhmfzj7S32BxdS2LtKKjCUNiOakFm8hro/vHwtVMEveYKjIsBPjoQiVMhelgs+FRDoLw==
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime-corejs3@^7.10.2":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.12.13.tgz#53d09813b7c20d616caf258e9325550ff701c039"
@@ -3580,7 +3588,7 @@ core-js-pure@^3.0.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.8.3.tgz#10e9e3b2592ecaede4283e8f3ad7020811587c02"
   integrity sha512-V5qQZVAr9K0xu7jXg1M7qTEwuxUgqr7dUOezGaNa7i+Xn9oXAU/d1fzqD9ObuwpVQOaorO5s70ckyi1woP9lVA==
 
-core-js@^2.4.0:
+core-js@^2.4.0, core-js@^2.6.5:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
@@ -10959,6 +10967,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+uikit@^3.6.17:
+  version "3.6.17"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.6.17.tgz#922736b201be8b7f5885eaf89b82a33f8e7a68e5"
+  integrity sha512-COQTHSPq5bp+qYmJZG6raEOqivxBZmMWtFaFkOasRIj1Wz9B+bjaKzlu8wD5AqMoVfjJmOfKKzQXu0WHSK49dg==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

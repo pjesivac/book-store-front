@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import Container from "@material-ui/core/Container";
 
 export const About = () => {
-    return(
-        <div>
-            <h1>About page</h1>
-        </div>
-    )
-}
+  return (
+    <Container>
+      <h1>About page</h1>
+    </Container>
+  );
+};
