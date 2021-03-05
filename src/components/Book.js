@@ -2,8 +2,34 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop: "64px",
+    display: "flex",
+    alignItems: "center",
+  },
+  paper: {
+    padding: theme.spacing(4),
+    color: theme.palette.text.secondary,
+    "& p": {
+      marginTop: "1rem",
+      fontWeight: 'bold',
+      fontSize: '18px',
+      "& span": {
+        fontWeight: 'normal',
+        marginLeft: "1rem",
+      },
+    },
+  },
+}));
 
 export const Book = (props) => {
+  const classes = useStyles();
   const [theBook, setTheBook] = useState([]);
 
   useEffect(() => {
@@ -22,7 +48,21 @@ export const Book = (props) => {
   return (
     <Container>
       {theBook.length !== 0 ? (
-        <img style={{ height: "300px" }} alt="" src={theBook.book.image} />
+        <Grid container spacing={2} className={classes.root} justify="center">
+          <Grid item md={4}>
+            <img alt="" src={theBook.book.image} />
+          </Grid>
+          <Grid item md={8}>
+            <Paper className={classes.paper}>
+              <p>
+                Book name:<span>{theBook.book.name}</span>
+              </p>
+              <p>Author:<span>{theBook.book.species}</span></p>
+              <p>Category:<span>{theBook.book.id}</span></p>
+              <p>Price:<span>{theBook.book.name}</span></p>
+            </Paper>
+          </Grid>
+        </Grid>
       ) : (
         <div></div>
       )}

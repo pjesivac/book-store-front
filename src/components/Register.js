@@ -15,7 +15,7 @@ import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -81,7 +81,7 @@ export const Register = () => {
           Register
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
-        <TextField
+          <TextField
             margin="normal"
             required
             fullWidth
@@ -134,8 +134,7 @@ export const Register = () => {
             Register
           </Button>
           <Grid container>
-            <Grid item xs>
-            </Grid>
+            <Grid item xs></Grid>
             <Grid item>
               <Link to="/login" variant="body2">
                 {"Already have an account? Sign In"}

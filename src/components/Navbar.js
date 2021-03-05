@@ -7,6 +7,7 @@ import LinkMaterial from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   mainbar: {
@@ -48,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: theme.spacing(3),
     },
   },
+  buttonAdd: {
+    marginLeft: theme.spacing(2),
+    textDecoration: "none",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: theme.spacing(0)
+    },
+  },
 }));
 
 export const Navbar = () => {
@@ -83,6 +91,9 @@ export const Navbar = () => {
                 </LinkMaterial>
               </Link>
             ))}
+            <Link to="/addBook" className={classes.buttonAdd}>
+              <Button variant="outlined">Add book</Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

@@ -20,7 +20,7 @@ export const Home = () => {
     <Container>
       <div
         data-uk-slider="{center:true}"
-        className="uk-position-relative uk-visible-toggle uk-light"
+        className="uk-position-relative uk-visible-toggle uk-light slider"
         tabIndex="-1"
         uk-slider="sets: true"
       >
