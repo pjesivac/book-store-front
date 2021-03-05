@@ -3,9 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -53,6 +51,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
@@ -102,47 +101,6 @@ export const Login = () => {
         
     } */
   return (
-    // <div className="container">
-    //   <div className="row">
-    //     <form className="col-6" onSubmit={handleSubmit}>
-    //       <div className="card">
-    //         <div className="mb-3">
-    //           <label htmlFor="email" className="form-label">
-    //             Email address
-    //           </label>
-    //           <input
-    //             type="email"
-    //             className="form-control"
-    //             id="email"
-    //             onChange={handleChange}
-    //             required
-    //           />
-    //         </div>
-    //         <div className="mb-3">
-    //           <label htmlFor="password" className="form-label">
-    //             Password
-    //           </label>
-    //           <input
-    //             type="password"
-    //             className="form-control"
-    //             id="password"
-    //             onChange={handleChange}
-    //             required
-    //           />
-    //         </div>
-    //         <div>
-    //           <button
-    //             className="btn btn-success left"
-    //             type="submit"
-    //             name="submitButton"
-    //           >
-    //             Submit
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} md={7} className={classes.image} />
@@ -155,7 +113,7 @@ export const Login = () => {
             Sign in
           </Typography>
           <Container>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <TextField
                 margin="normal"
                 required
@@ -164,6 +122,7 @@ export const Login = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={handleChange}
                 autoFocus
               />
               <TextField
@@ -175,6 +134,7 @@ export const Login = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleChange}
               />
               {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
