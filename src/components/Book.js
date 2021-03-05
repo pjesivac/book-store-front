@@ -15,13 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(4),
-    color: theme.palette.text.secondary,
     "& p": {
       marginTop: "1rem",
-      fontWeight: 'bold',
-      fontSize: '18px',
+      fontWeight: "bold",
+      fontSize: "18px",
       "& span": {
-        fontWeight: 'normal',
+        fontWeight: "normal",
         marginLeft: "1rem",
       },
     },
@@ -57,9 +56,18 @@ export const Book = (props) => {
               <p>
                 Book name:<span>{theBook.book.name}</span>
               </p>
-              <p>Author:<span>{theBook.book.species}</span></p>
-              <p>Category:<span>{theBook.book.id}</span></p>
-              <p>Price:<span>{theBook.book.name}</span></p>
+              <p>
+                Author:<span>{theBook.book.species}</span>
+              </p>
+              <p>
+                Overview:<span>{theBook.book.name}</span>
+              </p>
+              <p>
+                Category:<span>{theBook.book.id}</span>
+              </p>
+              <p>
+                Price:<span>{theBook.book.name}</span>
+              </p>
             </Paper>
           </Grid>
         </Grid>
