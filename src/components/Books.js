@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     width: 400,
-    margin: '64px auto'
+    margin: "64px auto",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   gridContainer: {
-    paddingLeft: '64px',
-    paddingRight: '64px'
-  }
+    paddingLeft: "64px",
+    paddingRight: "64px",
+  },
 }));
 
 export const Books = () => {
@@ -47,12 +47,16 @@ export const Books = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://b856bf28af30.ngrok.io/api/books/?search=H" );
+      const result = await axios("");
       setBooks(result.data.results);
       setLoading(false);
     };
     fetchData();
   }, [search]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
 
   const booksToShow = () => {
     return books.map((el, index) => {
@@ -67,7 +71,12 @@ export const Books = () => {
   return (
     <Container>
       <div className="wrapp">
-        <form className={classes.root} noValidate autoComplete="off">
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+          onSubmit={(e) => handleSearch(e)}
+        >
           <TextField
             id="standard-full-width"
             label=""

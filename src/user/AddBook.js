@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -7,6 +7,8 @@ import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%", 
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -34,14 +36,28 @@ const useStyles = makeStyles((theme) => ({
 
 export const AddBook = () => {
   const classes = useStyles();
+  // const [options, setOptions] = useState([])
   const [state, setState] = useState({
     name: "",
-    overview: "",
+    description: "",
     price: "",
+    printNo: "",
     author: "",
     category: "",
+    image: "",
   });
-  const [file, setFile] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios("");
+  //     const options = result.data.map(d => ({
+  //       "value" : d.id,
+  //       "label" : d.name
+  //     }))
+  //     setOptions({options})
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -50,11 +66,8 @@ export const AddBook = () => {
       [id]: value,
     }));
   };
-  const handleFile = (e) => {
-    let file = e.target.files[0];
 
-    setFile(file);
-  };
+  console.log( JSON.stringify(state))
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,16 +77,8 @@ export const AddBook = () => {
       Authorization: tok,
     };
 
-    let newBook = new FormData();
-    newBook.append("image", file);
-    newBook.append("name", state.name);
-    newBook.append("overview", state.overview);
-    newBook.append("price", state.price);
-    newBook.append("author", state.author);
-    newBook.append("category", state.category);
-
     axios
-      .post("http://b856bf28af30.ngrok.io/api/books", newBook, {
+      .post("", JSON.stringify(state), {
         headers: headers,
       })
       .then(function (response) {
@@ -85,7 +90,7 @@ export const AddBook = () => {
         console.log(error);
       });
   };
-  
+
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -103,9 +108,9 @@ export const AddBook = () => {
             />
           </div>
           <div className="row d-flex mb-3 align-items-start">
-            <p className="col-2">Overview:</p>
+            <p className="col-2">Description:</p>
             <TextField
-              id="overview"
+              id="description"
               size="small"
               className="col-10"
               multiline
@@ -121,6 +126,19 @@ export const AddBook = () => {
               id="price"
               className="col-10"
               size="small"
+              type="number"
+              variant="outlined"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="row d-flex align-items-baseline">
+            <p className="col-2">Print no:</p>
+            <TextField
+              id="printNo"
+              className="col-10"
+              size="small"
+              type="number"
               variant="outlined"
               onChange={handleChange}
               required
@@ -137,7 +155,7 @@ export const AddBook = () => {
               required
             />
           </div>
-          <div className="row d-flex align-items-baseline">
+          {/* <div className="row d-flex align-items-baseline">
             <p className="col-2">Category:</p>
             <TextField
               id="category"
@@ -147,14 +165,28 @@ export const AddBook = () => {
               onChange={handleChange}
               required
             />
+          </div> */}
+          <div className="row d-flex align-items-baseline">
+            <p className="col-2">Category:</p>
+            <FormControl className="col-10" variant="outlined" size="small">
+              <Select
+                native
+                size="small"
+                value={state.age}
+                onChange={handleChange}
+              >
+                <option aria-label="None" value="" />
+              </Select>
+            </FormControl>
           </div>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Image:</p>
-            <input
-              type="file"
-              className="form-control col-10 input-file"
-              id="customFile"
-              onChange={handleFile}
+            <TextField
+              id="image"
+              className="col-10"
+              size="small"
+              variant="outlined"
+              onChange={handleChange}
               required
             />
           </div>

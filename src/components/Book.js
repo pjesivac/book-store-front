@@ -33,7 +33,7 @@ export const Book = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("https://rickandmortyapi.com/api/character");
+      const result = await axios("");
       result.data.results.forEach((book) => {
         let id = props.match.params.id;
         if (book.id.toString() === id) {
@@ -49,24 +49,24 @@ export const Book = (props) => {
       {theBook.length !== 0 ? (
         <Grid container spacing={2} className={classes.root} justify="center">
           <Grid item md={4}>
-            <img alt="" src={theBook.book.image} />
+            <img alt="" src={theBook.image} />
           </Grid>
           <Grid item md={8}>
             <Paper className={classes.paper}>
               <p>
-                Book name:<span>{theBook.book.name}</span>
+                Book name:<span>{theBook.name}</span>
               </p>
               <p>
-                Author:<span>{theBook.book.species}</span>
+                Author:<span>{theBook.author}</span>
               </p>
               <p>
-                Overview:<span>{theBook.book.name}</span>
+                Overview:<span>{theBook.description}</span>
               </p>
               <p>
-                Category:<span>{theBook.book.id}</span>
+                Category:<span>{theBook.category.name}</span>
               </p>
               <p>
-                Price:<span>{theBook.book.name}</span>
+                Price:<span>{theBook.price}</span>
               </p>
             </Paper>
           </Grid>

@@ -9,7 +9,7 @@ class Auth {
     return !!token ? true : false;
   }
   setJwt(token) {
-    apiCall.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    apiCall.defaults.headers.common["Authorization"] = `Token ${token}`;
   }
   async login(loginData) {
     axios
@@ -32,7 +32,7 @@ class Auth {
     let tok = JSON.parse(localStorage.getItem("login"));
     const headers = (apiCall.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${tok}`);
+    ] = `Token ${tok}`);
     console.log(headers);
     axios
       .post("http://b856bf28af30.ngrok.io/auth/token/logout/", {
