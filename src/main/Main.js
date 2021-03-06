@@ -8,7 +8,7 @@ import { Contact } from "../components/Contact";
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import { AddBook } from "../user/AddBook";
-
+import ProtectedRoute from "../components/ProtectedRoute";
 export const Main = () => {
   return (
     <BrowserRouter>
@@ -21,7 +21,9 @@ export const Main = () => {
         <Route path="/contact" component={Contact}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
-        <Route path="/addBook" component={AddBook}></Route>
+        <ProtectedRoute path="/addBook" component={AddBook}></ProtectedRoute>
+
+        <Route path="/" component={Home}></Route>
       </Switch>
     </BrowserRouter>
   );
