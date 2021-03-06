@@ -10,6 +10,8 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,32 +76,30 @@ export const Login = () => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         state.password
       );
-    //sendDetailsToServer(isValid);
+    if (isValid) {
+      const loginData = {
+        "email": state.email,
+        "password": state.password,
+      }
+      axios.post('http://0b637c001df5.ngrok.io/api/auth/token/login/', loginData)
+        .then(function (response) {
+          if (response.status === 200) {
+            localStorage.setItem('login', JSON.stringify(response.auth_token))
+            return <Redirect to='/' />
+          }
+          else
+            console.log("Some error ocurred");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    }
+    else {
+      console.log('Please enter valid username and password')
+    }
   };
-  /* const sendDetailsToServer = (isDataValid) => {
-        if(props.isDataValid) {
-            props.showError(null);
-            const loginData={
-                "email":state.email,
-                "password":state.password,
-            }
-            axios.post(API_BASE_URL+'/user/register', loginData)
-                .then(function (response) {
-                    if(response.status === 200){
-                        redirectToHome();
-                        props.showError(null)
-                    } else{
-                        props.showError("Some error ocurred");
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });    
-        } else {
-            props.showError('Please enter valid username and password')    
-        }
-        
-    } */
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />

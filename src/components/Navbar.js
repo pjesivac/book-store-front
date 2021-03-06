@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   mainbar: {
     width: "100%",
@@ -62,6 +63,22 @@ export const Navbar = () => {
   const classes = useStyles();
   const [activeBtn, setActiveBtn] = useState("home");
 
+  const logout = (e) => {
+    let tok = JSON.parse(localStorage.getItem('login'));
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': tok,
+    }
+    axios.post('http://0b637c001df5.ngrok.io/api/auth/token/logout/', { headers: headers })
+      .then(function (response) {
+        localStorage.removeItem('login');
+        return <Redirect to='/' />
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <div className={classes.mainbar}>
       <Container>
@@ -91,9 +108,14 @@ export const Navbar = () => {
                 </LinkMaterial>
               </Link>
             ))}
-            <Link to="/addBook" className={classes.buttonAdd}>
-              <Button variant="outlined">Add book</Button>
-            </Link>
+            {
+              localStorage.getItem('login') &&
+              <Link to="/addBook" className={classes.buttonAdd}>
+                <Button variant="outlined">Add book</Button>
+              </Link> &&
+              <Button variant="outlined" onClick={logout}>Logout</Button>
+            }
+
           </Box>
         </Toolbar>
       </Container>

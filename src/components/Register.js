@@ -9,7 +9,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import axios from 'axios';
+import  { Redirect } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(2),
@@ -65,8 +66,31 @@ export const Register = () => {
         state.password
       );
     isValid = isValid && state.password === state.passwordConfirm;
-    console.log(isValid);
+    sendDetailsToServer(isValid);
   };
+  const sendDetailsToServer = (isDataValid) => {
+    if(isDataValid) {
+        const registerData={
+            "email":state.email,
+            "username":state.username,
+            "password":state.password,
+        }
+        axios.post('http://0b637c001df5.ngrok.io/api/auth/users', registerData)
+            .then(function (response) {
+                if(response.status === 200){
+                  return <Redirect to='/'  />
+                } else{
+                    console.log("Some error ocurred");
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });    
+    } else {
+        console.log('Please enter valid data')    
+    }
+    
+}
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
