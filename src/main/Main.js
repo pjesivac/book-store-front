@@ -9,14 +9,15 @@ import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import { AddBook } from "../user/AddBook";
 import ProtectedRoute from "../components/ProtectedRoute";
+
 export const Main = () => {
   return (
     <BrowserRouter>
       <Navbar></Navbar>
       <Switch>
         <Route exact path="/" component={Home}></Route>
-        <Route path="/books" component={Books}></Route>
-        <Route path="/book/:id" component={Book}></Route>
+        <ProtectedRoute path="/books" component={Books}></ProtectedRoute>
+        <ProtectedRoute path="/book/:id" component={Book}></ProtectedRoute>
         <Route path="/about" component={About}></Route>
         <Route path="/contact" component={Contact}></Route>
         <Route path="/login" component={Login}></Route>

@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(4),
@@ -62,33 +58,34 @@ export const AddBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let tok = JSON.parse(localStorage.getItem('login'));
+    let tok = JSON.parse(localStorage.getItem("login"));
     const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': tok,
-    }
+      "Content-Type": "application/json",
+      Authorization: tok,
+    };
 
     let newBook = new FormData();
-    newBook.append('image', file);
-    newBook.append('name', state.name);
-    newBook.append('overview', state.overview);
-    newBook.append('price', state.price);
-    newBook.append('author', state.author);
-    newBook.append('category', state.category);
+    newBook.append("image", file);
+    newBook.append("name", state.name);
+    newBook.append("overview", state.overview);
+    newBook.append("price", state.price);
+    newBook.append("author", state.author);
+    newBook.append("category", state.category);
 
-    axios.post('http://0b637c001df5.ngrok.io/api/books', newBook, { headers: headers })
+    axios
+      .post("http://b856bf28af30.ngrok.io/api/books", newBook, {
+        headers: headers,
+      })
       .then(function (response) {
         if (response.status === 200) {
-          return <Redirect to='/' />
-        }
-        else
-          console.log("Some error ocurred");
+          return <Redirect to="/" />;
+        } else console.log("Some error ocurred");
       })
       .catch(function (error) {
         console.log(error);
       });
-
   };
+  
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -96,7 +93,14 @@ export const AddBook = () => {
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Name:</p>
-            <TextField id="name" className="col-10" size="small" variant="outlined" onChange={handleChange} required />
+            <TextField
+              id="name"
+              className="col-10"
+              size="small"
+              variant="outlined"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="row d-flex mb-3 align-items-start">
             <p className="col-2">Overview:</p>
@@ -113,15 +117,36 @@ export const AddBook = () => {
           </div>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Price:</p>
-            <TextField id="price" className="col-10" size="small" variant="outlined" onChange={handleChange} required />
+            <TextField
+              id="price"
+              className="col-10"
+              size="small"
+              variant="outlined"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Author:</p>
-            <TextField id="author" className="col-10" size="small" variant="outlined" onChange={handleChange} required />
+            <TextField
+              id="author"
+              className="col-10"
+              size="small"
+              variant="outlined"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Category:</p>
-            <TextField id="category" className="col-10" size="small" variant="outlined" onChange={handleChange} required />
+            <TextField
+              id="category"
+              className="col-10"
+              size="small"
+              variant="outlined"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="row d-flex align-items-baseline">
             <p className="col-2">Image:</p>

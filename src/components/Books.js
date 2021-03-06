@@ -47,7 +47,7 @@ export const Books = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`https://rickandmortyapi.com/api/character`);
+      const result = await axios("http://b856bf28af30.ngrok.io/api/books/?search=H" );
       setBooks(result.data.results);
       setLoading(false);
     };

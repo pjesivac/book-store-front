@@ -10,8 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { auth } from "../auth/Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +49,7 @@ export const Login = () => {
   const classes = useStyles();
 
   const [state, setState] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -64,40 +63,13 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //validating input
-    let isValid = true;
-    isValid =
-      isValid &&
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-        state.email
-      );
-    isValid =
-      isValid &&
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-        state.password
-      );
-    if (isValid) {
-      const loginData = {
-        "email": state.email,
-        "password": state.password,
-      }
-      axios.post('http://0b637c001df5.ngrok.io/api/auth/token/login/', loginData)
-        .then(function (response) {
-          if (response.status === 200) {
-            localStorage.setItem('login', JSON.stringify(response.auth_token))
-            return <Redirect to='/' />
-          }
-          else
-            console.log("Some error ocurred");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
 
-    }
-    else {
-      console.log('Please enter valid username and password')
-    }
+    const loginData = {
+      username: state.username,
+      password: state.password,
+    };
+
+    auth.login(loginData);
   };
 
   return (
@@ -118,10 +90,10 @@ export const Login = () => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
                 onChange={handleChange}
                 autoFocus
               />
@@ -136,10 +108,6 @@ export const Login = () => {
                 autoComplete="current-password"
                 onChange={handleChange}
               />
-              {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -150,11 +118,7 @@ export const Login = () => {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link to="/register" variant="body2">
                     {"Don't have an account? Sign Up"}

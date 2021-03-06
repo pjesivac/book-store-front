@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { auth } from "../auth/Auth";
+
 const useStyles = makeStyles((theme) => ({
   mainbar: {
     width: "100%",
@@ -50,34 +50,18 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: theme.spacing(3),
     },
   },
-  buttonAdd: {
+  buttonN: {
     marginLeft: theme.spacing(2),
     textDecoration: "none",
     [theme.breakpoints.down("sm")]: {
-      marginLeft: theme.spacing(0)
+      marginLeft: theme.spacing(0),
     },
   },
 }));
 
 export const Navbar = () => {
   const classes = useStyles();
-  const [activeBtn, setActiveBtn] = useState("home");
-
-  const logout = (e) => {
-    let tok = JSON.parse(localStorage.getItem('login'));
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': tok,
-    }
-    axios.post('http://0b637c001df5.ngrok.io/api/auth/token/logout/', { headers: headers })
-      .then(function (response) {
-        localStorage.removeItem('login');
-        return <Redirect to='/' />
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const [isAuth, setIsAuth] = useState(auth.getAuthStatus());
 
   return (
     <div className={classes.mainbar}>
@@ -94,13 +78,12 @@ export const Navbar = () => {
             BOOK STORE
           </Typography>
           <Box className={classes.menuButtons}>
-            {["home", "books", "about", "contact", "login"].map((item) => (
+            {["home", "books", "about", "contact"].map((item) => (
               <Link key={item} to={item === "home" ? "/" : "/" + item}>
                 <LinkMaterial
                   component="button"
                   variant="body2"
-                  onClick={() => setActiveBtn(item)}
-                  color={activeBtn === item ? "textPrimary" : "textPrimary"}
+                  color={"textPrimary"}
                   className={classes.item}
                   key={item}
                 >
@@ -108,14 +91,32 @@ export const Navbar = () => {
                 </LinkMaterial>
               </Link>
             ))}
-            {
-              localStorage.getItem('login') &&
-              <Link to="/addBook" className={classes.buttonAdd}>
-                <Button variant="outlined">Add book</Button>
-              </Link> &&
-              <Button variant="outlined" onClick={logout}>Logout</Button>
-            }
-
+            {isAuth ? (
+              <div>
+                <Link to="/addBook" className={classes.buttonN}>
+                  <Button variant="outlined">Add book</Button>
+                </Link>
+                <Button
+                  className={classes.buttonN}
+                  variant="outlined"
+                  onClick={auth.logout}
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Link key={"login"} to={"/login"}>
+                <LinkMaterial
+                  component="button"
+                  variant="body2"
+                  color={"textPrimary"}
+                  className={classes.item}
+                  key={"login"}
+                >
+                  LOGIN
+                </LinkMaterial>
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </Container>
