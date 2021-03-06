@@ -29,6 +29,7 @@ class Auth {
       });
   }
   logout() {
+    console.log(apiCall.apiUrl)
     let tok = JSON.parse(localStorage.getItem("login"));
     const headers = (apiCall.defaults.headers.common[
       "Authorization"

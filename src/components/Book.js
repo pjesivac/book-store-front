@@ -33,7 +33,7 @@ export const Book = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("");
+      const result = await axios("http://b856bf28af30.ngrok.io/api/books/id/");
       result.data.results.forEach((book) => {
         let id = props.match.params.id;
         if (book.id.toString() === id) {

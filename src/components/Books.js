@@ -47,15 +47,16 @@ export const Books = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("");
+      const result = await axios("http://b856bf28af30.ngrok.io/api/books/");
       setBooks(result.data.results);
       setLoading(false);
     };
     fetchData();
-  }, [search]);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    // http://b856bf28af30.ngrok.io/api/books/?search=H
   };
 
   const booksToShow = () => {

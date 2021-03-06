@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", 
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const AddBook = () => {
   const classes = useStyles();
-  // const [options, setOptions] = useState([])
+  const [options, setOptions] = useState([]);
   const [state, setState] = useState({
     name: "",
     description: "",
@@ -47,17 +47,13 @@ export const AddBook = () => {
     image: "",
   });
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios("");
-  //     const options = result.data.map(d => ({
-  //       "value" : d.id,
-  //       "label" : d.name
-  //     }))
-  //     setOptions({options})
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(()=>{
+    const fetchData = async () => {
+      const result = await axios("http://b856bf28af30.ngrok.io/api/categories/");
+      setOptions(result);
+    };
+    fetchData();
+  }, [])
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -66,8 +62,6 @@ export const AddBook = () => {
       [id]: value,
     }));
   };
-
-  console.log( JSON.stringify(state))
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,7 +72,7 @@ export const AddBook = () => {
     };
 
     axios
-      .post("", JSON.stringify(state), {
+      .post("http://0b637c001df5.ngrok.io/api/books/", JSON.stringify(state), {
         headers: headers,
       })
       .then(function (response) {
@@ -176,6 +170,9 @@ export const AddBook = () => {
                 onChange={handleChange}
               >
                 <option aria-label="None" value="" />
+                {options.map((el) => {
+                  return <option key={el.id} value={el.id}>{el.name}</option>;
+                })}
               </Select>
             </FormControl>
           </div>
