@@ -72,7 +72,7 @@ export const Register = () => {
         "username": state.username,
         "password": state.password,
       }
-      axios.post('http://b856bf28af30.ngrok.io/api/auth/users', registerData)
+      axios.post('http://7d9575348cd9.ngrok.io/api/auth/users', registerData)
         .then(function (response) {
           if (response.status === 200) {
             return <Redirect to='/' />

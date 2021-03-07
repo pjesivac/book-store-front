@@ -11,10 +11,10 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 205,
   },
   media: {
-    height: 200,
+    height: 350,
   },
 });
 
@@ -31,15 +31,15 @@ const BookCard = (props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.bookInfo.species}
+            {props.bookInfo.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.bookInfo.episode[0]}
+            {props.bookInfo.price}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link to={`/book/${props.bookInfo.id}`}>
+        <Link to={`/book/${props.bookInfo.price}`}>
           <Button size="small" color="primary">
             Open
           </Button>

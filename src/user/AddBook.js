@@ -47,10 +47,12 @@ export const AddBook = () => {
     image: "",
   });
 
+  console.log(state)
+
   useEffect(()=>{
     const fetchData = async () => {
-      const result = await axios("http://b856bf28af30.ngrok.io/api/categories/");
-      setOptions(result);
+      const result = await axios("http://7d9575348cd9.ngrok.io/api/categories/");
+      setOptions(result.data);
     };
     fetchData();
   }, [])
@@ -63,6 +65,10 @@ export const AddBook = () => {
     }));
   };
 
+  const handleCategory = (e) => {
+    setState({category: e.target.value})
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let tok = JSON.parse(localStorage.getItem("login"));
@@ -72,7 +78,7 @@ export const AddBook = () => {
     };
 
     axios
-      .post("http://0b637c001df5.ngrok.io/api/books/", JSON.stringify(state), {
+      .post("http://7d9575348cd9.ngrok.io/api/books/", JSON.stringify(state), {
         headers: headers,
       })
       .then(function (response) {
@@ -167,7 +173,7 @@ export const AddBook = () => {
                 native
                 size="small"
                 value={state.age}
-                onChange={handleChange}
+                onChange={handleCategory}
               >
                 <option aria-label="None" value="" />
                 {options.map((el) => {

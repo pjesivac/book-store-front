@@ -47,8 +47,8 @@ export const Books = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://b856bf28af30.ngrok.io/api/books/");
-      setBooks(result.data.results);
+      const result = await axios("http://7d9575348cd9.ngrok.io/api/books/");
+      setBooks(result.data);
       setLoading(false);
     };
     fetchData();
@@ -56,7 +56,7 @@ export const Books = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // http://b856bf28af30.ngrok.io/api/books/?search=H
+    // http://7d9575348cd9.ngrok.io/api/books/?search=H
   };
 
   const booksToShow = () => {
