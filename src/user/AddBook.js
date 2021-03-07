@@ -66,7 +66,10 @@ export const AddBook = () => {
   };
 
   const handleCategory = (e) => {
-    setState({category: e.target.value})
+    setState((prevState)=> ({ 
+      ...prevState,
+      category: e.target.value
+    }));
   };
 
   const handleSubmit = (e) => {

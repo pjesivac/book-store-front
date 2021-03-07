@@ -8,7 +8,7 @@ import { Contact } from "../components/Contact";
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import { AddBook } from "../user/AddBook";
-import ProtectedRoute from "../components/ProtectedRoute";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export const Main = () => {
   return (

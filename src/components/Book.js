@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,19 +31,27 @@ const useStyles = makeStyles((theme) => ({
 export const Book = (props) => {
   const classes = useStyles();
   const [theBook, setTheBook] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("http://7d9575348cd9.ngrok.io/api/books/id/");
-      result.data.results.forEach((book) => {
-        let id = props.match.params.id;
-        if (book.id.toString() === id) {
-          setTheBook({ book });
-        }
-      });
+    let tok = JSON.parse(localStorage.getItem("login"));
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${tok}`,
     };
-    fetchData();
-  }, [props.match.params.id]);
+    const fetchData = async () => {
+      const result = await axios(
+        `http://7d9575348cd9.ngrok.io/api/books/${id}/`,
+        {
+          headers: headers,
+        }
+      );
+      setTheBook(result.data);
+    };
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <Container>

@@ -46,18 +46,23 @@ export const Books = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    let tok = JSON.parse(localStorage.getItem("login"));
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${tok}`,
+    };
     const fetchData = async () => {
-      const result = await axios("http://7d9575348cd9.ngrok.io/api/books/");
+      const result = await axios(
+        `http://7d9575348cd9.ngrok.io/api/books/?search=${search}`,
+        {
+          headers: headers,
+        }
+      );
       setBooks(result.data);
       setLoading(false);
     };
     fetchData();
-  }, []);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // http://7d9575348cd9.ngrok.io/api/books/?search=H
-  };
+  }, [search]);
 
   const booksToShow = () => {
     return books.map((el, index) => {
@@ -72,12 +77,7 @@ export const Books = () => {
   return (
     <Container>
       <div className="wrapp">
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={(e) => handleSearch(e)}
-        >
+        <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-full-width"
             label=""

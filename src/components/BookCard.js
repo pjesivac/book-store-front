@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+
 const useStyles = makeStyles({
   root: {
     width: 205,
@@ -39,7 +40,7 @@ const BookCard = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link to={`/book/${props.bookInfo.price}`}>
+        <Link to={`/book/${props.bookInfo.id}`}>
           <Button size="small" color="primary">
             Open
           </Button>
