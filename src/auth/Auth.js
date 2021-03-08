@@ -12,7 +12,7 @@ class Auth {
   }
   async login(loginData) {
     axios
-      .post("http://7d9575348cd9.ngrok.io/auth/token/login/", loginData)
+      .post("http://bd474173e194.ngrok.io/auth/token/login/", loginData)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {

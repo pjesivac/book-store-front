@@ -1,6 +1,6 @@
 import axios from "axios";
 import { auth } from "./Auth";
-const apiUrl = "http://92dbcf584461.ngrok.io/";
+const apiUrl = "http://bd474173e194.ngrok.io/";
 
 const instance = axios.create({
   baseURL: apiUrl,

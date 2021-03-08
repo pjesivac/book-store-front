@@ -41,7 +41,7 @@ export const Book = (props) => {
     };
     const fetchData = async () => {
       const result = await axios(
-        `http://826c7690e31d.ngrok.io/api/books/${id}/`,
+        `http://bd474173e194.ngrok.io/api/books/${id}/`,
         {
           headers: headers,
         }

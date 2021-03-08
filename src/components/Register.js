@@ -72,7 +72,7 @@ export const Register = () => {
         "username": state.username,
         "password": state.password,
       }
-      axios.post('http://826c7690e31d.ngrok.io/api/auth/users', registerData)
+      axios.post('http://bd474173e194.ngrok.io/api/auth/users', registerData)
         .then(function (response) {
           if (response.status === 200) {
             return <Redirect to='/' />
@@ -105,7 +105,7 @@ export const Register = () => {
             id="username"
             label="Username"
             name="username"
-            autoComplete="username"
+            autoComplete='off'
             autoFocus
             onChange={handleChange}
           />
@@ -114,31 +114,31 @@ export const Register = () => {
             required
             fullWidth
             id="email"
+            autoComplete='off'
             label="Email Address"
             name="email"
-            autoComplete="email"
             onChange={handleChange}
           />
           <TextField
             margin="normal"
+            autoComplete=""
             required
             fullWidth
             name="password"
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
             onChange={handleChange}
           />
           <TextField
             margin="normal"
+            autoComplete='off'
             required
             fullWidth
             name="passwordConfirm"
             label="Repeat password"
-            type="passwordConfirm"
+            type="password"
             id="passworConfirm"
-            autoComplete="current-password"
             onChange={handleChange}
           />
           <Button

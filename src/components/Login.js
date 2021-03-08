@@ -93,7 +93,7 @@ export const Login = () => {
                 id="username"
                 label="Username"
                 name="username"
-                autoComplete="username"
+                autoComplete="off"
                 onChange={handleChange}
                 autoFocus
               />
@@ -105,7 +105,7 @@ export const Login = () => {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="off"
                 onChange={handleChange}
               />
               <Button
