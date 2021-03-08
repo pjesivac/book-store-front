@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import apiCall from "./apiCall";
 
 class Auth {
@@ -21,7 +20,7 @@ class Auth {
             "login",
             JSON.stringify(response.data.auth_token)
           );
-          return <Redirect to="/" />;
+          window.location.href = "/";
         } else console.log("Some error ocurred");
       })
       .catch(function (error) {
@@ -31,24 +30,24 @@ class Auth {
   logout() {
     localStorage.removeItem("login");
     window.location.href = "/login";
-  //   let tok = JSON.parse(localStorage.getItem("login"));
-  //   const headers = (apiCall.defaults.headers.common[
-  //     "Authorization"
-  //   ] = `Token ${tok}`);
-  //   console.log(headers);
-  //   axios
-  //     .post("http://7d9575348cd9.ngrok.io/auth/token/logout/", {
-  //       headers: headers,
-  //     })
-  //     .then(function (response) {
-  //       if (response.status === 200) {
-  //         localStorage.removeItem("login");
-  //         return <Redirect to="/login" />;
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
+    //   let tok = JSON.parse(localStorage.getItem("login"));
+    //   const headers = (apiCall.defaults.headers.common[
+    //     "Authorization"
+    //   ] = `Token ${tok}`);
+    //   console.log(headers);
+    //   axios
+    //     .post("http://7d9575348cd9.ngrok.io/auth/token/logout/", {
+    //       headers: headers,
+    //     })
+    //     .then(function (response) {
+    //       if (response.status === 200) {
+    //         localStorage.removeItem("login");
+    //         return <Redirect to="/login" />;
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
   }
 }
 

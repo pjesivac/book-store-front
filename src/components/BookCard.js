@@ -31,9 +31,7 @@ const BookCard = (props) => {
           title={props.bookInfo.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.bookInfo.description}
-          </Typography>
+          
           <Typography variant="body2" color="textSecondary" component="p">
             {props.bookInfo.price}
           </Typography>
