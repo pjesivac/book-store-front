@@ -41,7 +41,7 @@ export const Book = (props) => {
     };
     const fetchData = async () => {
       const result = await axios(
-        `http://7d9575348cd9.ngrok.io/api/books/${id}/`,
+        `http://826c7690e31d.ngrok.io/api/books/${id}/`,
         {
           headers: headers,
         }
@@ -52,15 +52,16 @@ export const Book = (props) => {
       fetchData();
     }
   }, [id]);
+  console.log(theBook)
 
   return (
     <Container>
       {theBook.length !== 0 ? (
         <Grid container spacing={2} className={classes.root} justify="center">
-          <Grid item md={4}>
+          <Grid item md={3}>
             <img alt="" src={theBook.image} />
           </Grid>
-          <Grid item md={8}>
+          <Grid item md={6}>
             <Paper className={classes.paper}>
               <p>
                 Book name:<span>{theBook.name}</span>
@@ -72,7 +73,7 @@ export const Book = (props) => {
                 Overview:<span>{theBook.description}</span>
               </p>
               <p>
-                Category:<span>{theBook.category.name}</span>
+                Category:<span>{theBook.category}</span>
               </p>
               <p>
                 Price:<span>{theBook.price}</span>
