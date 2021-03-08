@@ -31,7 +31,6 @@ const BookCard = (props) => {
           title={props.bookInfo.name}
         />
         <CardContent>
-          
           <Typography variant="body2" color="textSecondary" component="p">
             {props.bookInfo.price}
           </Typography>
